@@ -9,6 +9,8 @@ import {
   CardBody
 }                           from 'reactstrap';
 import styled               from 'styled-components';
+import * as R               from 'ramda';
+import validator            from 'validator';
 
 import { Login }            from './actions/userActions';
 
@@ -53,7 +55,10 @@ class LoginPage extends Component {
                 onChange={this.onChange}
               />
             </FormGroup>
-            <Button type="submit">
+            <Button
+              type="submit"
+              disabled={!canSubmitForm(this.state)}
+            >
               Login
             </Button>
           </form>
@@ -62,6 +67,12 @@ class LoginPage extends Component {
     );
   }
 }
+
+const canSubmitForm = ({ username, password }) => R.all(R.equals(true))([
+  validator.isEmail(username),
+  !R.isEmpty(username),
+  !R.isEmpty(password),
+]);
 
 const StyledCard = styled(Card)`
   margin : 30px;

@@ -9,6 +9,8 @@ import {
   Card,
   CardBody
 }                           from 'reactstrap';
+import * as R               from 'ramda';
+import validator            from 'validator';
 
 import { signUp }           from './actions/userActions';
 
@@ -75,7 +77,10 @@ class SignUpPage extends Component {
                 onChange={this.onChange}
               />
             </FormGroup>
-            <Button type="submit">
+            <Button
+              type="submit"
+              disabled={!canSubmitForm(this.state)}
+            >
               Sign up
             </Button>
           </form>
@@ -84,6 +89,19 @@ class SignUpPage extends Component {
     );
   }
 }
+
+const canSubmitForm = ({
+  username,
+  password,
+  firstName,
+  lastName,
+}) => R.all(R.equals(true))([
+  validator.isEmail(username),
+  !R.isEmpty(username),
+  !R.isEmpty(password),
+  !R.isEmpty(firstName),
+  !R.isEmpty(lastName),
+]);
 
 const StyledCard = styled(Card)`
   margin : 30px;
