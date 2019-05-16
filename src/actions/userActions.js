@@ -1,35 +1,30 @@
-import axios              from 'axios';
+import axios from 'axios';
 
 import {
   API_URL,
   GET_USER
-}                         from '../constants';
+}            from '../constants';
 
 export function signUp(user) {
   return function(dispatch) {
     axios.post(
       `${API_URL}/register`,
       user,
-      { headers: { 'Content-Type': 'application/json'} })
-    .then(res => {
-      if (res.status === 200) {
-        console.log(res.status)
-      } else {
-        console.log(res.status);
-      }
+      { headers: { 'Content-Type': 'application/json'}
     })
-    .catch( err => console.log(err))
+    .catch(err => {
+      console.error('error: ', err);
+    })
   }
 };
 
-export function Login(user) {
+export function login(user) {
   return function(dispatch) {
     axios.post(
-      `${API_URL}/login`, user, {
-      headers: {
-        'Authorization': 'Bearer JWT_VALUE',
-      }
-    })
+      `${API_URL}/login`,
+      user,
+      { headers: {'Authorization': 'Bearer JWT_VALUE'} }
+    )
     .then(({ data : { token }}) => {
       localStorage.setItem('token', token);
     })
@@ -53,7 +48,7 @@ export function getUser() {
       }
     })
     .catch(err => {
-      console.error("error: ", err);
+      console.error('error: ', err);
     })
   }
 }
@@ -64,12 +59,13 @@ export function logout(user) {
       `${API_URL}/logout`,
       {},
       {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        }
       }
-    })
+    )
     .then(res => {
-      console.log(res);
+      localStorage.removeItem('token')
     })
     .catch(err => {
       console.error('error: ', err);
