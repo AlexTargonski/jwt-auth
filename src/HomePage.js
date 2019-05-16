@@ -14,7 +14,6 @@ class HomePage extends Component {
 
     return (
       <>
-      {console.log(userData.firstName)}
         {
           userData &&
           <>
