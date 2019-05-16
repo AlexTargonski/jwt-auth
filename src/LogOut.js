@@ -17,10 +17,6 @@ class LogOut extends Component {
   }
 }
 
-// const mapStateToProps = state => ({
-//   userData : state.user,
-// });
-
 const mapDispatchToProps = dispatch => ({
   onLogOut: () => {
     dispatch(logout());
