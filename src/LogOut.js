@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import { connect }          from 'react-redux';
+import { Button }           from 'reactstrap';
 
 import { logout }           from './actions/userActions';
 
 class LogOut extends Component {
   handleClick = () => {
-    this.props.onLogOut()
+    this.props.onLogOut();
   };
 
   render() {
     return (
-      <button onClick={this.handleClick}>
+      <Button onClick={this.handleClick}>
         Log out
-      </button>
+      </Button>
     );
   }
 }
