@@ -12,7 +12,7 @@ import styled               from 'styled-components';
 import * as R               from 'ramda';
 import validator            from 'validator';
 
-import { Login }            from './actions/userActions';
+import { login }            from './actions/userActions';
 
 class LoginPage extends Component {
   state={
@@ -26,8 +26,7 @@ class LoginPage extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onLogin(this.state)
-    this.props.history.push('/home');
+    this.props.onLogin(this.state);
   };
 
   render() {
@@ -78,11 +77,13 @@ const StyledCard = styled(Card)`
   margin : 30px;
 `;
 
-export default connect(
-  state => ({}),
-  dispatch => ({
-    onLogin: user => {
-      dispatch(Login(user));
-    }
-  })
-)(LoginPage);
+const mapDispatchToProps = (dispatch, ownProps) => {
+   return {
+      onLogin: user => {
+        dispatch(login(user));
+        ownProps.history.push('/home');
+      },
+   };
+};
+
+export default connect(null, mapDispatchToProps)(LoginPage);

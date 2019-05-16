@@ -107,11 +107,13 @@ const StyledCard = styled(Card)`
   margin : 30px;
 `;
 
-export default connect(
-  null,
-  dispatch => ({
-    onSignUp: user => {
-      dispatch(signUp(user));
-    }
-  })
-)(SignUpPage);
+const mapDispatchToProps = (dispatch, ownProps) => {
+   return {
+      onSignUp: user => {
+        dispatch(signUp(user));
+        ownProps.history.push('/');
+      },
+   };
+};
+
+export default connect(null, mapDispatchToProps)(SignUpPage);
