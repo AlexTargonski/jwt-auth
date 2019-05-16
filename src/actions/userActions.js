@@ -64,7 +64,7 @@ export function logout(user) {
         }
       }
     )
-    .then(res => {
+    .then(() => {
       localStorage.removeItem('token')
     })
     .catch(err => {
