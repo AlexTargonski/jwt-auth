@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import { connect }          from 'react-redux';
+import {
+  FormGroup,
+  Label,
+  Input,
+  Button,
+  Card,
+  CardBody
+}                           from 'reactstrap';
+import styled               from 'styled-components';
 
 import { Login }            from './actions/userActions';
 
 class LoginPage extends Component {
   state={
-    username: "",
-    password: "",
+    username: '',
+    password: '',
   };
 
   onChange = ({ target : { value, name } }) => {
@@ -16,30 +25,47 @@ class LoginPage extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.onLogin(this.state)
+    this.props.history.push('/home');
   };
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type="email"
-          name="username"
-          value={this.state.username}
-          onChange={this.onChange}
-        />
-        <input
-          type="password"
-          name="password"
-          value={this.state.password}
-          onChange={this.onChange}
-        />
-        <button type="submit">
-          Login
-        </button>
-      </form>
+      <StyledCard>
+        <CardBody>
+          <form onSubmit={this.handleSubmit}>
+            <FormGroup>
+              <Label for="username">Username</Label>
+              <Input
+                type="email"
+                name="username"
+                id="username"
+                value={this.state.username}
+                onChange={this.onChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="password">Password</Label>
+              <Input
+                type="password"
+                name="password"
+                id="password"
+                value={this.state.password}
+                onChange={this.onChange}
+              />
+            </FormGroup>
+            <Button type="submit">
+              Login
+            </Button>
+          </form>
+        </CardBody>
+      </StyledCard>
     );
   }
 }
+
+const StyledCard = styled(Card)`
+  margin : 30px;
+`;
 
 export default connect(
   state => ({}),
