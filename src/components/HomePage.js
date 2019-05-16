@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect }          from 'react-redux';
 
-import { getUser }          from './actions/userActions';
+import { getUser }          from '../actions/userActions';
 import LogOut               from './LogOut';
 
 class HomePage extends Component {

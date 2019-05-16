@@ -12,7 +12,7 @@ import styled               from 'styled-components';
 import * as R               from 'ramda';
 import validator            from 'validator';
 
-import { login }            from './actions/userActions';
+import { login }            from '../actions/userActions';
 
 class LoginPage extends Component {
   state={

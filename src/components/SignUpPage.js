@@ -12,7 +12,7 @@ import {
 import * as R               from 'ramda';
 import validator            from 'validator';
 
-import { signUp }           from './actions/userActions';
+import { signUp }           from '../actions/userActions';
 
 class SignUpPage extends Component {
   state = {
