@@ -11,6 +11,7 @@ import {
 import styled               from 'styled-components';
 import * as R               from 'ramda';
 import validator            from 'validator';
+import { Link }             from 'react-router-dom'
 
 import { login }            from '../actions/userActions';
 
@@ -60,6 +61,10 @@ class LoginPage extends Component {
             >
               Login
             </Button>
+            <Serparator>
+              |
+            </Serparator>
+            <Link to="/sign_up">or sign up</Link>
           </form>
         </CardBody>
       </StyledCard>
@@ -75,6 +80,10 @@ const canSubmitForm = ({ username, password }) => R.all(R.equals(true))([
 
 const StyledCard = styled(Card)`
   margin : 30px;
+`;
+
+const Serparator = styled.span`
+  margin : 0 15px;
 `;
 
 const mapDispatchToProps = (dispatch, ownProps) => {
