@@ -27,7 +27,8 @@ export function login(user) {
       { headers: {'Authorization': 'Bearer JWT_VALUE'} }
     )
     .then(({ data : { token }}) => localStorage.setItem('token', token))
-    .then(() => window.location.replace('/home'))
+    .then(() => history.push('/home'))
+    .then(() => history.go(0))
     .catch(err => {
       console.error('error: ', err);
     })
@@ -65,7 +66,8 @@ export function logout(user) {
       }
     )
     .then(() => localStorage.removeItem('token'))
-    .then(() => window.location.replace('/'))
+    .then(() => history.push('/'))
+    .then(() => history.go(0))
     .catch(err => {
       console.error('error: ', err);
     })
