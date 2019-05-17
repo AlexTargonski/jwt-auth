@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios   from 'axios';
 
 import {
   API_URL,
   GET_USER
-}            from '../constants';
+}              from '../constants';
 import history from '../history'
 
 export function signUp(user) {
