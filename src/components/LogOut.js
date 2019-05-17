@@ -21,7 +21,6 @@ class LogOut extends Component {
 const mapDispatchToProps = (dispatch, ownProps)  => ({
   onLogOut: () => {
     dispatch(logout());
-    ownProps.history.push('/');
   }
 });
 

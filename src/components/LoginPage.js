@@ -90,7 +90,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
    return {
       onLogin: user => {
         dispatch(login(user));
-        ownProps.history.push('/home');
       },
    };
 };

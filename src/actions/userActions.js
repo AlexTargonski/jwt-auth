@@ -4,6 +4,7 @@ import {
   API_URL,
   GET_USER
 }            from '../constants';
+import history from '../history'
 
 export function signUp(user) {
   return function(dispatch) {
@@ -25,9 +26,8 @@ export function login(user) {
       user,
       { headers: {'Authorization': 'Bearer JWT_VALUE'} }
     )
-    .then(({ data : { token }}) => {
-      localStorage.setItem('token', token);
-    })
+    .then(({ data : { token }}) => localStorage.setItem('token', token))
+    .then(() => window.location.replace('/home'))
     .catch(err => {
       console.error('error: ', err);
     })
@@ -64,9 +64,8 @@ export function logout(user) {
         }
       }
     )
-    .then(() => {
-      localStorage.removeItem('token')
-    })
+    .then(() => localStorage.removeItem('token'))
+    .then(() => window.location.replace('/'))
     .catch(err => {
       console.error('error: ', err);
     })
