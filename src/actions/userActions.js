@@ -28,7 +28,6 @@ export function login(user) {
     )
     .then(({ data : { token }}) => localStorage.setItem('token', token))
     .then(() => history.push('/home'))
-    .then(() => history.go(0))
     .catch(err => {
       console.error('error: ', err);
     })
@@ -67,7 +66,6 @@ export function logout(user) {
     )
     .then(() => localStorage.removeItem('token'))
     .then(() => history.push('/'))
-    .then(() => history.go(0))
     .catch(err => {
       console.error('error: ', err);
     })
