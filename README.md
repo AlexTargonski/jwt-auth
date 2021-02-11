@@ -1,5 +1,5 @@
 ```
-git clone https://github.com/AlexTargonski/jwt-auth.git
+git clone https://github.com/OleksandrTarhonskiy/jwt-auth.git
 
 cd to project folder
 
